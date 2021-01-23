@@ -51,7 +51,7 @@ app.post('/api/customers', upload.single('image'), (req, res) => {
 });
 
 app.delete('/api/customers/:id', (req, res) => {
-    let sql = 'UPDATE CUSTOMER SET isDeleted = 1 WHERE id = ?';
+    let sql = 'UPDATE CUSTOMER SET isDeleted = 1, deletedDate = NOW() WHERE id = ?';
     let params = [req.params.id];
     connection.query(sql, params,
         (err, rows, fields) => {
